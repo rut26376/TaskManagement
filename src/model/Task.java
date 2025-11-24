@@ -51,7 +51,7 @@ public class Task {
 	
 	public String toJson()
 	{
-		return "{id:" + id + "title:" + title + "description:" + description + "status:" + status + "},\n";
+		return "{id:" + id + ",title:" + title + ",description:" + description + ",status:" + status + "},\n";
 	}
 	
 }

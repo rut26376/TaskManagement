@@ -1,6 +1,9 @@
 package model;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +17,43 @@ public class TaskRepository {
 	{
 		this.tasks = new ArrayList<Task>();
 	}
+	
+	
+	public String Add(int id , String title , String description)
+	{
+		if(getById(id) != null)
+		{
+			return "Error: Id already exists, try again";
+		}
+		else
+		{
+			Task t = new Task(id , title , description , Status.NEW);
+			String data = t.toJson();
+			 try  {
+				 FileWriter fw = new FileWriter(JSON_FILE, true);
+	             BufferedWriter writer = new BufferedWriter(fw);
+		         writer.write(data);
+		         writer.close();
+		        } catch (IOException e) {
+		           return "Error appending data: " + e.getMessage();
+		        }
+			
+			return "The task was created successfully.";
+		}
+		
+	}
+	
+	
+	public Task getById(int id)
+	{
+		return null;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public List<Task> ListAll()
 	{
@@ -66,8 +106,8 @@ public class TaskRepository {
           }
            
             
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred: File not found.");
+        } catch (Exception e) {
+            System.out.println("An error occurred:" + e.getMessage());
             e.printStackTrace();
         }
 		
