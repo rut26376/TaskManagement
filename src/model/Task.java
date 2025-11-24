@@ -19,17 +19,15 @@ public class Task {
 		this.status = status;
 	}
 	
-	public Task()
+	public Task(int id)
 	{
-		
+		this.id = id;
 	}
 	
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getTitle() {
 		return title;
 	}

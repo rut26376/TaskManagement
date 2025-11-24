@@ -77,15 +77,14 @@ public class TaskRepository {
           data = data.replace("}", "");
             
           String [] d =  data.split(",");
-          Task t = new Task();;
+          Task t = new Task(0);
           for(String field : d)
           {
        	  String current [] = field.split(":");
        	  switch(current[0])
        	  {
        	  case "id":
-       		  t = new Task();
-       		  t.setId(Integer.parseInt(current[1]));
+       		  t = new Task(Integer.parseInt(current[1]));
        	      break;
        	  case "title":
        		  t.setTitle(current[1]);
