@@ -90,13 +90,13 @@ public class TaskRepository {
        	  case "status":
        		  switch(current[1])
        		  {
-       		  case " DONE":
+       		  case "DONE":
        			  t.setStatus(Status.DONE);
        			  break;
-       		  case " IN_PROGRESS":
+       		  case "IN_PROGRESS":
        			  t.setStatus(Status.IN_PROGRESS);
        			  break;
-       		  case " NEW":
+       		  case "NEW":
            		  t.setStatus(Status.NEW);
            		  break;
        		  }
@@ -111,7 +111,9 @@ public class TaskRepository {
             e.printStackTrace();
         }
 		
-		
+		for (Task task : tasks) {
+			System.out.println(task.toString());
+		}
 		return tasks;
 	}
 }

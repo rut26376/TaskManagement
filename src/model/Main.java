@@ -9,6 +9,7 @@ public class Main {
 		TaskRepository t = new TaskRepository();
 		t.Add(12, "iohi", "jidf");
 		t.Add(13, "iohi", "jidf");
+		t.ListAll();
 	}
 
 }
