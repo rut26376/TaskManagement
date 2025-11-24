@@ -49,4 +49,9 @@ public class Task {
 		this.status = status;
 	}
 	
+	public String toJson()
+	{
+		return "{id:" + id + "title:" + title + "description:" + description + "status:" + status + "},\n";
+	}
+	
 }
