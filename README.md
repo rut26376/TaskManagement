@@ -11,16 +11,18 @@ Contains the solutions to the design questions.
 Contains two text files, one for each solution.
 
 #### main and model:
-Contains the task management system
+Contains the task management system:
    main - The Main class.
    model - All the classes.
    
 ### Run Instructions   
 
 - Download the project: git clone https://github.com/rut26376/java-assignment.git
+- Open the project in your workspace.
 
 #### Run the Task Management project
+<<<<<<< HEAD
 - run the class main.Main
 
 #### Run the algorithmic exercise
-- run this class: algorithms.StrictlyIncreasing
+- run the class algorithms.StrictlyIncreasing.
