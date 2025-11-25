@@ -7,10 +7,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-public class TaskRepository {
+public abstract class TaskRepository {
 
 	private final String JSON_FILE = "C:/Users/java/TaskManagement/src/model/Tasks.json";
-	private List<Task> tasks;
+	protected List<Task> tasks;
 	
 	public TaskRepository()
 	{
