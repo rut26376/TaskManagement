@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class TaskRepository {
 
 	// יש לשנות את הניתוב בהתאם לתיקיה
-	private final String JSON_FILE = "C:/Users/java/TaskManagement/src/model/Tasks.json";
+	private final String JSON_FILE = "src/model/Tasks.json";
 	private List<Task> tasks;
 
 	public TaskRepository() {

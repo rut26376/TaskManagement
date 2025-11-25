@@ -20,7 +20,6 @@ Contains the task management system
 - Download the project: git clone https://github.com/rut26376/java-assignment.git
 
 #### Run the Task Management project
-- Update the JSON file path inside model.TaskRepository according to your local path.
 - run the class main.Main
 
 #### Run the algorithmic exercise
