@@ -15,6 +15,7 @@ public abstract class TaskRepository {
 	public TaskRepository()
 	{
 		this.tasks = new ArrayList<Task>();
+		listAll();
 	}
 	
 	public String add(int id , String title , String description)
@@ -29,7 +30,6 @@ public abstract class TaskRepository {
 			try
 			{
 				writeTaskToJson(t);
-				if(tasks != null)
 					tasks.add(t);
 				return "The task was created successfully.";
 			}
@@ -64,8 +64,6 @@ public abstract class TaskRepository {
 	
 	public boolean delete(int id)
 	{
-		if(tasks.isEmpty())
-		listAll();
 		Task t = getById(id);
 		if(t != null)
 		{
@@ -91,8 +89,7 @@ public abstract class TaskRepository {
 	
 	public Task getById(int id)
 	{
-		if(tasks.isEmpty())
-		listAll();
+		
 		for(Task task :tasks)
 		{
 			if(task.getId() == id)
