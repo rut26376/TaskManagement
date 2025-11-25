@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskService extends TaskRepository{
@@ -14,8 +15,13 @@ public class TaskService extends TaskRepository{
 	
 	public List<Task> searchByText(String text)
 	{
-	
-		return null;
+	    List<Task> tsk = new ArrayList<Task>();
+	    for(Task t: tasks)
+	    {
+	    	if(t.getTitle().contains(text) || t.getDescription().contains(text))
+	    		tsk.add(t);
+	    }
+		return tsk;
 	}
 	
 	

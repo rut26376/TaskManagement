@@ -17,6 +17,8 @@ public class Main {
 		t2.setTitle("well");
 		tr.update(t2);
 		tr.markAsDone(14);
+		System.out.println(tr.searchByText("i"));
+		;
 	}
 
 }
