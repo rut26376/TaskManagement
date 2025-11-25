@@ -1,0 +1,87 @@
+
+יצירת 3 קונטרולרים : Books , Customers , Loans
+
+endpoints for Books:
+* GET  Books/getAllBooks - קבלת כל הספרים
+* GET  Books/getBookById/{id} - ספר לפי קוד
+* POST  Books/add (קבלת הספר ב- body) - הוספת ספר
+* DELETE Books/delete/{id} - מחיקת ספר
+* PUT Books/update (קבלת הספר ב- body) - עדכון ספר
+
+endpoints for Customers:
+* GET  Customers/getAllCustomers - קבלת כל הלקוחות
+* GET  Customers/getCustomerById/{id} - לקוח לפי ת.ז.
+* POST  Customers/add (קבלת הלקוח ב- body) - הוספת לקוח
+* DELETE Customers/delete/{id} - מחיקת לקוח
+* PUT Customers/update (קבלת הלקוח ב- body) - עדכון לקוח
+
+endpoints for Loans:
+* GET  Loans/getLoans - קבלת כל פרטי ההשאלות
+* POST  Loans/add - השאלה חדשה
+* DELETE Loans/delete/{BookId}/{customerId} - מחיקת השאלה
+* PUT Loans/return/{BookId}/{customerId} - החזרת הספר
+* GET Loans/getCustomerLoans/{customerId} - קבלת ההשאלות ללקוח מסוים 
+
+actions for Books:
+* getAllBooks() = טוען את כל הספרים ממסד הנתונים ממיר לאוביקט ומחזיר ללקוח
+* getBookById(int id) = מחפש ספר מסוים לפי הקוד שלו ומחזיר ללקוח
+* add(Book b) = מקבל ספר חדש ומוסיף אותו לנתונים הקיימים
+* delete(int id) = מסיר את הספר ממאגר הנתונים לפי הקוד שלו
+* update(Book b) = מקבל ספר ומעדכן אותו
+
+actions for Customers:
+* Customers() = טוען את כל הספרים ממסד הנתונים ממיר לאוביקט ומחזיר ללקוח
+* getCustomerById(String id) = מחפש לקוח מסוים לפי הקוד שלו ומחזיר ללקוח
+* add(Customer c) = מקבל לקוח חדש ומוסיף אותו לנתונים הקיימים
+* delete(String id) = מסיר את הלקוח ממאגר הנתונים לפי הקוד שלו
+* update(Customer c) = מקבל לקוח ומעדכן אותו
+
+actions for Loans:
+* getLoans() = טוען את כל ההשאלות ממסד הנתונים ממיר לאוביקט ומחזיר ללקוח
+* add(Loan l) = מקבל השאלה חדשה ומוסיף אותו לנתונים הקיימים
+* delete(int BookId , String customerId) = מחיקת השאלה לפי קוד ספר ות.ז. לקוח
+* return(int BookId , String customerId) = סימון השאלה כספר שהוחזר
+* getCustomerLoans(String customerId) = החזרת כל הספרים המושאלים ללקוח מסוים 
+
+	DTO:
+	
+	Book {
+	int id;
+	String name;
+	String author;
+	boolean isLoan;
+	}
+	
+	Customer{
+	String id;
+	String name;
+	String phone;
+	String age;
+	}
+	
+	Loan{
+	int bookId;
+	String customerId;
+	LocalDate loanDate;
+	LocalDate endDate;
+	boolean isActive;
+	}
+	
+	
+	שדות חובה:
+	
+	Book:
+	- id - חייב להיות מזהה לספר
+	- isLoan - חייב להיות מושאל או זמין
+	
+	
+	Customer:
+	- id - חייב להיות מזהה קבוע ללקוח
+	
+	Loan:
+	- int bookId - חובה לדעת איזה ספר מושאל וכן למי הוא מושאל
+	- customerId
+	- endDate - הספר חייב זמן מסוים שבו הוא ידרש להיות מוחזר
+	- isActive - ההשאלה חייבת להיות פעילה או לא כדי שיוכלו לנהל אותה
+	
+	
