@@ -2,11 +2,14 @@ package main;
 
 import java.util.Scanner;
 
+import model.TaskService;
+
 public class Main {
 
 	 public static void main(String[] args) {
 		 Scanner console = new Scanner(System.in);
 		int type = -1;
+		TaskService ts = new TaskService();
 		System.out.println("Choose an option:\n"
 				+ "0. Exit"
 				+ "1. Add\n"
@@ -25,6 +28,14 @@ public class Main {
 			switch (type)
 			{
 			case 1:
+				System.out.print("id: ");
+				int id = console.nextInt();
+				console.nextLine();
+				System.out.print("title: ");
+				String title = console.nextLine();
+				System.out.print("description: ");
+				String des = console.nextLine();
+				System.out.println(ts.add(id, title, des));
 				break;
 			case 2:
 				break;
