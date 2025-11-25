@@ -22,6 +22,7 @@ Contains the task management system:
 
 #### Run the Task Management project
 - run the class main.Main
+- Select the action number you want to run.
 
 #### Run the algorithmic exercise
 - run the class algorithms.StrictlyIncreasing.
