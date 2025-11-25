@@ -49,7 +49,7 @@ public class Task {
 	
 	public String toJson()
 	{
-		return "{\nid:" + id + ",\ntitle:" + '"' + title + '"' + ",\ndescription:" + '"' + description + '"' + ",\nstatus:" + status + "\n},\n";
+		return "{\nid:" + id + ",\ntitle:"  + title + ",\ndescription:" + description + ",\nstatus:" + status + "\n},\n";
 	}
 
 	@Override

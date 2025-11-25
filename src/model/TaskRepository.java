@@ -18,7 +18,7 @@ public class TaskRepository {
 	}
 	
 	
-	public String Add(int id , String title , String description)
+	public String add(int id , String title , String description)
 	{
 		if(getById(id) != null)
 		{
@@ -29,7 +29,7 @@ public class TaskRepository {
 			Task t = new Task(id , title , description , Status.NEW);
 			try
 			{
-				WriteTaskToJson(t);
+				writeTaskToJson(t);
 				return "The task was created successfully.";
 			}
 			catch (Exception e) {
@@ -40,10 +40,29 @@ public class TaskRepository {
 		
 	}
 	
+	public boolean update(Task t)
+	{
+		Task toUpdate = getById(t.getId());
+		
+		if(toUpdate != null)
+		{
+			delete(toUpdate.getId());
+			try {
+				writeTaskToJson(t);
+				return true;
+			}
+			catch (Exception e) {
+				System.out.println("Error appending data: " + e.getMessage());
+				return false;
+			}
+		}
+		return false;
+	}
+	
 	
 	public Task getById(int id)
 	{
-		ListAll();
+		listAll();
 		for(Task task :tasks)
 		{
 			if(task.getId() == id)
@@ -52,19 +71,19 @@ public class TaskRepository {
 		return null;
 	}
 	
-	public boolean Delete(int id)
+	public boolean delete(int id)
 	{
-		ListAll();
+		listAll();
 		Task t = getById(id);
 		if(t != null)
 		{
 			tasks.remove(t);
-			CleanJSon();
+			cleanJSon();
 			for(Task ts: tasks)
 			{
 				try
 				{
-					WriteTaskToJson(ts);
+					writeTaskToJson(ts);
 				}
 				catch (Exception e) {
 					System.out.println("Error appending data: " + e.getMessage());
@@ -77,7 +96,7 @@ public class TaskRepository {
 		
 	}
 	
-	private boolean CleanJSon()
+	private boolean cleanJSon()
 	{
 		try
 		{
@@ -91,12 +110,12 @@ public class TaskRepository {
 		}
 	}
 	
-	private boolean WriteTaskToJson(Task t) throws Exception
+	private boolean writeTaskToJson(Task t) throws Exception
 	{
 		String data = t.toJson();
 		 try  {
 			 FileWriter fw = new FileWriter(JSON_FILE, true);
-            BufferedWriter writer = new BufferedWriter(fw);
+             BufferedWriter writer = new BufferedWriter(fw);
 	         writer.write(data);
 	         writer.close();
 	         return true;
@@ -105,7 +124,7 @@ public class TaskRepository {
 	        }
 	}
 	
-	public void ListAll()
+	public void listAll()
 	{
 		String data = "";
 		tasks = new ArrayList<Task>();
