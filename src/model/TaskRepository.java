@@ -17,7 +17,6 @@ public class TaskRepository {
 		this.tasks = new ArrayList<Task>();
 	}
 	
-	
 	public String add(int id , String title , String description)
 	{
 		if(getById(id) != null)
@@ -30,15 +29,18 @@ public class TaskRepository {
 			try
 			{
 				writeTaskToJson(t);
+				if(tasks != null)
+					tasks.add(t);
 				return "The task was created successfully.";
 			}
 			catch (Exception e) {
-				return e.getMessage();
+				return "Error appending data: " + e.getMessage();
 			}
 			 
 		}
 		
 	}
+	
 	
 	public boolean update(Task t)
 	{
@@ -49,6 +51,7 @@ public class TaskRepository {
 			delete(toUpdate.getId());
 			try {
 				writeTaskToJson(t);
+				tasks.add(t);
 				return true;
 			}
 			catch (Exception e) {
@@ -59,26 +62,16 @@ public class TaskRepository {
 		return false;
 	}
 	
-	
-	public Task getById(int id)
-	{
-		listAll();
-		for(Task task :tasks)
-		{
-			if(task.getId() == id)
-				return task;
-		}
-		return null;
-	}
-	
 	public boolean delete(int id)
 	{
+		if(tasks.isEmpty())
 		listAll();
 		Task t = getById(id);
 		if(t != null)
 		{
 			tasks.remove(t);
-			cleanJSon();
+			if(!cleanJSon())
+				return false;
 			for(Task ts: tasks)
 			{
 				try
@@ -96,32 +89,16 @@ public class TaskRepository {
 		
 	}
 	
-	private boolean cleanJSon()
+	public Task getById(int id)
 	{
-		try
+		if(tasks.isEmpty())
+		listAll();
+		for(Task task :tasks)
 		{
-			new PrintWriter(JSON_FILE).close();
-			return true;
+			if(task.getId() == id)
+				return task;
 		}
-		catch(Exception e)
-		{
-			System.out.println("Error appending data: " + e.getMessage());
-			return false;
-		}
-	}
-	
-	private boolean writeTaskToJson(Task t) throws Exception
-	{
-		String data = t.toJson();
-		 try  {
-			 FileWriter fw = new FileWriter(JSON_FILE, true);
-             BufferedWriter writer = new BufferedWriter(fw);
-	         writer.write(data);
-	         writer.close();
-	         return true;
-	        } catch (IOException e) {
-	          throw new Exception("Error appending data: " + e.getMessage());
-	        }
+		return null;
 	}
 	
 	public void listAll()
@@ -181,4 +158,33 @@ public class TaskRepository {
         }
 		
 	}
+	
+	private boolean cleanJSon()
+	{
+		try
+		{
+			new PrintWriter(JSON_FILE).close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error appending data: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	private void writeTaskToJson(Task t) throws Exception
+	{
+		String data = t.toJson();
+		 try  {
+			 FileWriter fw = new FileWriter(JSON_FILE, true);
+             BufferedWriter writer = new BufferedWriter(fw);
+	         writer.write(data);
+	         writer.close();
+	        } catch (IOException e) {
+	          throw new Exception("Error appending data: " + e.getMessage());
+	        }
+	}
+	
+	
 }

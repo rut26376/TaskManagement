@@ -19,7 +19,7 @@ public class Task {
 		this.status = status;
 	}
 	
-	public Task(int id)
+     Task(int id)
 	{
 		this.id = id;
 	}

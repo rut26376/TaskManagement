@@ -1,5 +1,7 @@
-package model;
+package main;
 
+import model.Task;
+import model.TaskRepository;
 
 public class Main {
 
