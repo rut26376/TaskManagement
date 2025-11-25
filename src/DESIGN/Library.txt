@@ -45,26 +45,27 @@ actions for Loans:
 
 	DTO:
 	
-	Book {
-	int id;
-	String name;
-	String author;
-	boolean isLoan;
+	public class Book {
+	private int id;
+	private String name;
+	private String author;
+	private Category category; (Category is enum)
+	private boolean isLoan;
 	}
 	
-	Customer{
-	String id;
-	String name;
-	String phone;
-	String age;
+	public class Customer{
+	private String id;
+	private String name;
+	private String phone;
+	private LocalDate age;
 	}
 	
-	Loan{
-	int bookId;
-	String customerId;
-	LocalDate loanDate;
-	LocalDate endDate;
-	boolean isActive;
+	public class Loan{
+	private int bookId;
+	private String customerId;
+	private LocalDate loanDate;
+	private LocalDate endDate;
+	private boolean isActive;
 	}
 	
 	
